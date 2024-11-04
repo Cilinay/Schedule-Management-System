@@ -70,6 +70,10 @@ body{
     order: 3; /* Display on the right */
 }
 
+.add-user {
+    order: 6; /* Display on the right */
+}
+
 .header p {
     margin: 0;
 }
