@@ -63,6 +63,7 @@ $result = mysqli_query($conn, $query);
                     </div>
                         <div class="card-body">
                             <!-- Add ID "userTable" to the table -->
+                            <div class='table-responsive'>
                             <table id="userTable" class="table table-bordered w-50">
                                 <thead>
                                     <tr class="bg-dark text-white">
@@ -99,14 +100,16 @@ $result = mysqli_query($conn, $query);
                                         <td><?php echo $row['mobile'] ?></td>
                                         <td><?php echo $row['lastLogIn'] ?></td>
                                         <td><?php echo $row['dateCreated'] ?></td>
-                                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                                        <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="updateUser.php? id=<?php echo $user['id']; ?>" class="btn btn-primary">Edit</a></td>
+                                        <td><button class="btn btn-danger delete-btn" data-id="<?php echo $row['id']; ?>">Delete</button></td>
+
                                     </tr>
                                     <?php
                                         }
                                     ?>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,6 +193,34 @@ $result = mysqli_query($conn, $query);
                 "order": [[0, "asc"]]
             });
         });
+
+        //delete
+        $(document).ready(function() {
+    $('.delete-btn').on('click', function() {
+        const userId = $(this).data('id');
+
+        if (confirm('Are you sure you want to delete this user?')) {
+            $.ajax({
+                url: 'deleteUser.php',
+                type: 'POST',
+                data: { id: userId },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        alert(response.message);
+                        location.reload(); // Reload the page to refresh the table
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while trying to delete the user.');
+                }
+            });
+        }
+    });
+});
+
     </script>
 
     

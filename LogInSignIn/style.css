@@ -9,11 +9,11 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: rgb(14, 13, 13);
+    color: rgb(255, 255, 255);
 }
 a{
-    color: rgb(14, 13, 13);
+    color: rgb(255, 255, 255);
 }
 .form-text{
-    color: rgb(14, 13, 13);
+    color: rgb(255, 255, 255);
 }
